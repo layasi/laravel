@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.app');
-});
+Route::get('/', [IndexController::class, 'index'])->name('home');
+
+Route::get('about', [AboutController::class, 'index'])->name('about.index');
+Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
+Route::get('projects', [ProjectController::class, 'index'])->name('projects.index');

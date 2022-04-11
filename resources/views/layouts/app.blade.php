@@ -4,9 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laravel Application</title>
+    <title> @yield('title') | {{ config('app.name') }}</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <h1>Hello you</h1>
+    <div class="app">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a href="{{ url('/') }}" class="navbar-brand">Abubakar Iliyasu</a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a href="{{route ('home')}}" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route ('about.index')}}" class="nav-link">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route ('projects.index')}}" class="nav-link">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route ('contact.index')}}" class="nav-link">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <main class="py-4 container">
+            @yield('content')
+        </main>
+    </div>
 </body>
 </html>
