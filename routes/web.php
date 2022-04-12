@@ -20,5 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
 Route::get('about', [AboutController::class, 'index'])->name('about.index');
-Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
 Route::get('projects', [ProjectController::class, 'index'])->name('projects.index');
+
+Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('contact/show', [ContactController::class, 'show'])->name('contact.show');
