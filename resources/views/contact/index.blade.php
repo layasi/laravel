@@ -3,9 +3,11 @@
 @section('content')
 
     <h4>Contact Us</h4>
+    @auth
     <div class="col-6 mb-2">
         <a href = "{{route('contact.show')}}" class="btn btn-primary float-end">Show Messages</a>
     </div>
+    @endauth 
     <p>Drop me a line anytime. Just fill the form and i will get right back at you. *wink*</p>
     @if (Session::has('success'))
     <div class="alert alert-success col-6">{{Session::get('success')}}</div>

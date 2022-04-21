@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MessageRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ContactController extends Controller
 {
@@ -32,5 +33,34 @@ class ContactController extends Controller
         return view('contact.show', [
                     'messages' => $messages
         ]);
+    }
+    public function edit($id)
+    {
+        $message = Contact::findOrFail($id);
+        // dd($message); 
+        return view('contact.edit', compact('message'));
+    }
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'number' => 'required',
+            'message' => 'required'
+        ]);
+
+        Contact::whereId($id)->update($validatedData);
+
+        return redirect()->route('contact.show')->with('success', 'Message is updated');
+    }
+    public function destroy($id)
+    {
+        // $message = Myform::findOrfail($id);
+        
+        // $message->delete();
+
+        DB::table('contacts')->where('id', $id)->delete();
+        
+        return redirect()->route('contact.show')->with('success', 'Message deleted');
     }
 }

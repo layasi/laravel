@@ -36,6 +36,27 @@
                             <a href="{{route ('contact.index')}}" class="nav-link">Contact</a>
                         </li>
                     </ul>
+                    <ul class="navbar-nav ms-auto">
+                        @guest
+                        <li class="nav-item">
+                            <a href="{{route('auth.register')}}" class="nav-link">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('auth.login')}}" class="nav-link">Login</a>
+                        </li>
+                        @endguest
+                        @auth
+                        <li class="nav-item">
+                            <a href="{{route('dashboard')}}" class="nav-link">{{auth()->user()->name}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <form action="{{route('logout')}}" method="post">
+                                @csrf
+                                <button class="nav-link border-none">Logout</button>
+                            </form>
+                        </li>
+                        @endauth
+                    </ul>
                 </div>
             </div>
         </nav>
